@@ -35,51 +35,28 @@ var articles={
 			</p>`
 },
 'article-two':{
-	title:'Article-one | Hello world',
+	title:'Article-two | Hello world',
 	heading:'Article-one',
 	content:`<p>
 				I am in haldia Institute of technology. I am in haldia Institute of technology.
 				I am in haldia Institute of technology.
 				I am in haldia Institute of technology.I am in haldia Institute of technology.
 
-			</p>
-
-			<p>
-				I am in haldia Institute of technology. I am in haldia Institute of technology.
-				I am in haldia Institute of technology.
-				I am in haldia Institute of technology.I am in haldia Institute of technology.
-
-			</p>
-			<p>
-				I am in haldia Institute of technology. I am in haldia Institute of technology.
-				I am in haldia Institute of technology.
-				I am in haldia Institute of technology.I am in haldia Institute of technology.
+	
 
 			</p>`
 },
 
 'article-three':{
-	title:'Article-one | Hello world',
+	title:'Article-three | Hello world',
 	heading:'Article-one',
 	content:`<p>
 				I am in haldia Institute of technology. I am in haldia Institute of technology.
 				I am in haldia Institute of technology.
 				I am in haldia Institute of technology.I am in haldia Institute of technology.
 
-			</p>
-
-			<p>
-				I am in haldia Institute of technology. I am in haldia Institute of technology.
-				I am in haldia Institute of technology.
-				I am in haldia Institute of technology.I am in haldia Institute of technology.
-
-			</p>
-			<p>
-				I am in haldia Institute of technology. I am in haldia Institute of technology.
-				I am in haldia Institute of technology.
-				I am in haldia Institute of technology.I am in haldia Institute of technology.
-
 			</p>`
+
 }
 };
 
