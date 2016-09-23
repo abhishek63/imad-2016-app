@@ -4,23 +4,11 @@ console.log('Loaded!');
 var x = document.getElementById('text');
 x.innerHTML = 'This is the my new webpage';
 
+var button = document.getElementById('submit');
+var data=0;
+button.onclick=function(){
 
-//move image to right 
-var img = document.getElementById('madi');
-
-var right=10;
-function moveright(){
-
-	right = right+10;
-
-	img.style.marginLeft =right+"px";
-
-
-}
-img.onclick= function(){
-
-		// let image scroll left to right
-		var interval= setInterval(moveright,100);
-
-
+		var text1 = document.getElementById('text1');
+		data = data+1;
+		text1.innerHtml = data.toString();
 };
