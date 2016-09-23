@@ -7,15 +7,19 @@ x.innerHTML = 'This is the my new webpage';
 
 //move image to right 
 
-var img = document.getElementById('madi');
+var right=10;
+function moveright(){
 
-//when image click then this function will work
+	right = right+10;
+
+	img.style.marginLeft =right+"px";
+
+
+}
 img.onclick= function(){
 
-		// let image little bit bigger
-
-		img.style.marginLeft ='500px';
-		console.log("clicked");
+		// let image scroll left to right
+		var interval= setInterval(moveright,100);
 
 
 };
