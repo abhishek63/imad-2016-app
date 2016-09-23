@@ -6,6 +6,7 @@ x.innerHTML = 'This is the my new webpage';
 
 
 //move image to right 
+var img = document.getElementById('madi');
 
 var right=10;
 function moveright(){
