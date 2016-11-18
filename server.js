@@ -211,12 +211,24 @@ app.get('/ui/footer.html',function(req,res){
 });
 
 
-app.get('/:articleName',function(req,res){
+app.get('/articles/:articleName',function(req,res){
 
 
 	var articleName = req.params.articleName;
 
-	console.log("articleName");
+	pool.query("SELECT * from article WHERE title='"+articleName +"'",function(err,result){
+	    if(err){
+	    res.status(500).send(err.toString());
+       }
+       else{
+           if(result.rows.length===0){
+               res.status(404).send("Article Not Found");
+           }else{
+               
+           }
+       }
+	    
+	});
 
 
 	res.send(createHtmlTemplate(articles[articleName]));
