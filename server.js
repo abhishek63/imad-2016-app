@@ -15,7 +15,7 @@ var config = {
     database : 'abhishek63',
     password : process.env.DB_PASSWORD
     
-}
+};
 
 
 
