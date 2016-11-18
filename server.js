@@ -135,6 +135,9 @@ app.get('/hash/:input', function (req, res) {
 
 
 app.get('/create-user/:username/:password',function(req,res){
+    
+    username = req.params.username;
+    password = req.params.password;
    
    var salt = crypto.randomBytes(128).toString('hex');
    var dbstring = hash(password,salt);
