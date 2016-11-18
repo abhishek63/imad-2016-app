@@ -130,30 +130,30 @@ app.get('/', function (req, res) {
 });
 
 app.get('/ui/js/main.js',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/js','main.js')); 
+   res.sendFile(path.join(__dirname,'/ui/js','main.js')); 
 });
 
 
 app.get('/ui/css/main.css',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/css','main.css')); 
+   res.sendFile(path.join(__dirname,'/ui/css','main.css')); 
 });
 
 
 app.get('/ui/css/about.css',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/css','about.css')); 
+   res.sendFile(path.join(__dirname,'/ui/css','about.css')); 
 });
 
 app.get('/ui/css/logincss.css',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/css','logincss.css')); 
+   res.sendFile(path.join(__dirname,'/ui/css','logincss.css')); 
 });
 
 
 app.get('/ui/include/login.html',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/include','login.html')); 
+   res.sendFile(path.join(__dirname,'/ui/include','login.html')); 
 });
 
 app.get('/ui/include/register.html',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/include','register.html')); 
+   res.sendFile(path.join(__dirname,'/ui/include','register.html')); 
 });
 
 app.get('/ui/img.jpg',function(req,res){
