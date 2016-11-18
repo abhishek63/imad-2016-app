@@ -210,13 +210,13 @@ app.get('/ui/footer.html',function(req,res){
    res.sendFile(path.join(__dirname,'ui','footer.html')); 
 });
 
-
+//fetch article from the database 
 app.get('/articles/:articleName',function(req,res){
 
 
 	var articleName = req.params.articleName;
 
-	pool.query("SELECT * from article WHERE title='"+articleName +"'",function(err,result){
+	pool.query("SELECT * from article WHERE title=$1",[articleName],function(err,result){
 	    if(err){
 	    res.status(500).send(err.toString());
        }
