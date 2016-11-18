@@ -136,7 +136,7 @@ app.get('/hash/:input', function (req, res) {
 var pool = new Pool(config);
 app.get('/test',function(req,res){
    // make a select query 
-   pool.query('SELECT * FROM user',function(err,result){
+   pool.query('SELECT * FROM category',function(err,result){
        if(err){
        
        res.status(500).send(err.toString());
