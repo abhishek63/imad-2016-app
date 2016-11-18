@@ -162,15 +162,15 @@ app.get('/ui/img.jpg',function(req,res){
 
 
 app.get('/ui/include/about.html',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/include','about.html')); 
+   res.sendFile(path.join(__dirname,'/ui/include','about.html')); 
 });
 
 app.get('/ui/include/login.html',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/include','login.html')); 
+   res.sendFile(path.join(__dirname,'/ui/include','login.html')); 
 });
 
 app.get('/ui/include/home.html',function(req,res){
-   res.sendFile(path.join(__dirname,'ui/include','home.html')); 
+   res.sendFile(path.join(__dirname,'/ui/include','home.html')); 
 });
 
 
