@@ -254,6 +254,10 @@ app.get('/ui/include/about.html',function(req,res){
    res.sendFile(path.join(__dirname,'/ui/include','about.html')); 
 });
 
+app.get('/about',function(req,res){
+   res.sendFile(path.join(__dirname,'/ui/include','about.html')); 
+});
+
 app.get('/ui/include/login.html',function(req,res){
    res.sendFile(path.join(__dirname,'/ui/include','login.html')); 
 });
