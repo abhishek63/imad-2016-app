@@ -1,102 +1,123 @@
-
-
-var header = `
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-        		
-                    <a class="navbar-brand" href="#/"><i class="fa fa-rss" aria-hidden="true"></i> Kumargolu63 </a>
-                </div>
-
+function loadArticles () {
+        // Check if the user is already logged in
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            var articles = document.getElementById('articles');
+            if (request.status === 200) 
+            {
+                var content = '';
+                var articleData = JSON.parse(this.responseText);
                 
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#/services">Home</a>
-                        </li>
-                        <li><a href="#/pricing">Pricing Table</a>
-                        </li>
-                        <li><a href="#/about">About</a>
-                        </li>
-                        <li><a href="#/faq">FAQ</a>
-                        </li>
-                        <li><a href="#/contact">Contact</a>
-                        </li>
+                for (var i=0; i< articleData.length; i++) {
+                    /*content += `<li>
+                    <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
+                    (${articleData[i].date.split('T')[0]})</li>`;*/
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">Blog <i class="fa fa-user-o" aria-hidden="true"><b class="caret"></b></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#/blog">List of Posts</a>
-                                </li>
-                                <li><a href="#/blog/post">View One Post</a>
-                                </li>
-                            </ul>
-                        </li>
+                    content+=`
 
-                        <li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i> Login</a></li>
-                    </ul>
-                </div>
-                
-            </div>
-        </nav>
-        `;
+                 <div class="row">
+                        <div class="col-md-3">
+                            <div class="section-title">
+                                <h2>My Specialities</h2>
+                            </div>
+                        </div>
 
-function createTemplate(){
+                        <div class="col-md-8">
+                            <div class="row">
+                                
+                                    <div class="expertise-item">
+                                        <h3>${articleData[i].title}</h3>
+
+                                        <p>
+                                            Posted 10 minutes ago by ${articleData[i].author_id}, Contributor
+                                        </p>
 
 
-    var htmlTemplate = `
+                                        <h4>
 
-                <!DOCTYPE html>
-                <html class="no-js">
-                <head>
+                                            ${articleData[i].content}
+                                            
+                                        </h4>
+                                    </div>
+                               
+                             
+                            </div>
+                           
+                        </div>
+                    </div>
 
-                    <!-- Information about blog IMAD -->
-                    <title>Kumargolu63 Blog</title>
-                    <meta charset="utf-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-                    <meta name="description" content="Imad Courses.">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-                    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-                    <link rel="stylesheet" href="ui/css/main.css">
-                   
-
-                </head>
-            
-                <body>
-
-
-               
-                <div id="myheader"></div>
+                    `;
+        }
+                //content += "</ul>"
+                articles.innerHTML = content;
+            } else {
+                articles.innerHTML('Oops! Could not load all articles!')
+            }
+        }
+    };
+    
+    request.open('GET', '/get-articles', true);
+    request.send(null);
+};
 
 
 
+function test(){
+ var content = '';
+    for (var i=0; i< 3; i++) {
+                    /*content += `<li>
+                    <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
+                    (${articleData[i].date.split('T')[0]})</li>`;*/
 
-                <div ng-include="myfooter"></div>
+                    content +=`
 
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-                <script src="ui/js/main.js"></script>
+                 <div class="row">
+                        <div class="col-md-3">
+                            <div class="section-title">
+                                <h2>My Specialities</h2>
+                            </div>
+                        </div>
 
-                </body>
-                </html>
+                        <div class="col-md-8">
+                            <div class="row">
+                                
+                                    <div class="expertise-item">
+                                        <h3>FBI will receive âlimitedâ Twitter firehose access through Dataminr, but has to watch its step</h3>
 
-    `;
+                                        <p>
+                                            Posted 10 minutes ago by Devin Coldewey, Contributor
+                                        </p>
 
-     return htmlTemplate;
 
- };
+                                        <h4>
 
-//createTemplate();
-document.getElementById('myheader').innerHTML = header;
+
+                                            TechCrunch was told that the service being provided to the FBI is different from that requested by the CIA, which was turned away before. The FBI would receive âa limited version of our breaking news alerting productâ starting December 1, according to a Dataminr statement. (âDataminr is not a product that enables surveillance,â it concluded. Not knowingly, perhaps.)
+
+                                        </h4>
+                                    </div>
+                               
+                             
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                    `;
+
+
+
+
+
+                }
+ var articles = document.getElementById('articles');
+ articles.innerHTML = content;
+
+}
+
+loadArticles();
+
 
 
 
