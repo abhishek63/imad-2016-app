@@ -85,32 +85,43 @@ function createHtmlTemplate(data){
 
 	
 
-	var htmlTemplate = `
+var htmlTemplate = `
 
-					<html>
-			<head>
-			<title>${title}</title>
-			</head>
+                <!DOCTYPE html>
+                <html class="no-js">
+                <head>
 
-			<body>
+                    <!-- Information about blog IMAD -->
+                    <title>Kumargolu63 Blog</title>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                    <meta name="description" content="Imad Courses.">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+                    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+                    <link rel="stylesheet" href="ui/css/main.css">
+                   
 
-				<div id="container">
+                </head>
+            
+                <body>
 
-					<h1>
 
-						${heading} 
+               
+                <div id="myheader"></div>
 
-					</h1>
 
-					<h2>
-						Created by --- Abhishek  ${date}
-					</h2>
-						
-						${content}
-				</div>
-			</body>
 
-			</html>
+
+                <div ng-include="myfooter"></div>
+
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+                <script src="/ui/main1.js"></script>
+
+                </body>
+                </html>
 	`;
 
 
@@ -272,7 +283,9 @@ app.get('/ui/header.html',function(req,res){
    res.sendFile(path.join(__dirname,'ui','header.html')); 
 });
 
-
+app.get('/hello',function(req,res){
+   res.send(createHtmlTemplate); 
+});
 
 
 app.get('/ui/footer.html',function(req,res){
@@ -304,6 +317,13 @@ app.get('/articles/:articleName',function(req,res){
 
 
 });
+
+
+app.get('/ui/:fileName', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
+})
+
+
 
 
 
