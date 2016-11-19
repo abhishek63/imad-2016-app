@@ -1,3 +1,4 @@
+
 function loadArticles () {
         // Check if the user is already logged in
     var request = new XMLHttpRequest();
@@ -6,7 +7,10 @@ function loadArticles () {
             var articles = document.getElementById('articles');
             if (request.status === 200) 
             {
-                var content = '';
+                var content =`
+                        <section class="expertise-wrapper section-wrapper">
+                            <div class="container">
+                        `;
                 var articleData = JSON.parse(this.responseText);
                 
                 for (var i=0; i< articleData.length; i++) {
@@ -47,9 +51,21 @@ function loadArticles () {
                         </div>
                     </div>
 
+                    <hr>
+
                     `;
-        }
-                //content += "</ul>"
+
+
+
+
+
+
+
+                }
+                content +=`
+                        </div>
+                    </section>
+                    `;
                 articles.innerHTML = content;
             } else {
                 articles.innerHTML('Oops! Could not load all articles!')
@@ -106,16 +122,11 @@ function test(){
 
                     `;
 
-
-
-
-
                 }
  var articles = document.getElementById('articles');
  articles.innerHTML = content;
 
 }
-
 loadArticles();
 
 
