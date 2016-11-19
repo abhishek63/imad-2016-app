@@ -27,7 +27,16 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
 
+
+
 var pool = new Pool(config);
+
+
+function hash (input, salt) {
+    // How do we create a hash?
+    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+    return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
+}
 
 app.get('/get-articles', function (req, res) {
    // make a select request
