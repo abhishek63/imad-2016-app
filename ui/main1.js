@@ -69,5 +69,3 @@ var register = document.getElementById('register_btn');
         register.value = 'Registering...';
     
     };
-
-request.open('POST', '/create-user', true);
