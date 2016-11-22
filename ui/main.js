@@ -1,6 +1,9 @@
 
-function loadArticles () {
+function loadArticles (count) {
         // Check if the user is already logged in
+    
+   
+    
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
@@ -17,13 +20,16 @@ function loadArticles () {
                     /*content += `<li>
                     <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
                     (${articleData[i].date.split('T')[0]})</li>`;*/
+                    
+                    var trimmedString = articleData[i].content.substring(0, 300);
+                    var time = new Date(articleData[i].date);
 
                     content+=`
 
                  <div class="row">
                         <div class="col-md-3">
                             <div class="section-title">
-                                <h2>My Specialities</h2>
+                                <h2>${articleData[i].category}</h2>
                             </div>
                         </div>
 
@@ -31,17 +37,21 @@ function loadArticles () {
                             <div class="row">
                                 
                                     <div class="expertise-item">
-                                        <h3>${articleData[i].title}</h3>
+                                        <h3><a href="/articles/${articleData[i].title}">${articleData[i].title}</a></h3>
 
                                         <p>
-                                            Posted 10 minutes ago by ${articleData[i].author_id}, Contributor
+                            
+                        
+                            Posted on ${time.toLocaleDateString()}  at ${time.toLocaleTimeString()} by ${articleData[i].username}
+                                         
                                         </p>
 
 
                                         <h4>
 
-                                            ${articleData[i].content}
-                                            
+                                                ${trimmedString}
+                                        <a href="/articles/${articleData[i].title}"> Read More</a>
+                                       
                                         </h4>
                                     </div>
                                
@@ -56,11 +66,6 @@ function loadArticles () {
                     `;
 
 
-
-
-
-
-
                 }
                 content +=`
                         </div>
@@ -68,66 +73,115 @@ function loadArticles () {
                     `;
                 articles.innerHTML = content;
             } else {
-                articles.innerHTML('Oops! Could not load all articles!')
+                articles.innerHTML('Oops! Could not load all articles!');
             }
         }
     };
     
-    request.open('GET', '/get-articles', true);
-    request.send(null);
-};
-
-
-
-function test(){
- var content = '';
-    for (var i=0; i< 3; i++) {
-                    /*content += `<li>
-                    <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
-                    (${articleData[i].date.split('T')[0]})</li>`;*/
-
-                    content +=`
-
-                 <div class="row">
-                        <div class="col-md-3">
-                            <div class="section-title">
-                                <h2>My Specialities</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-md-8">
-                            <div class="row">
-                                
-                                    <div class="expertise-item">
-                                        <h3>FBI will receive âlimitedâ Twitter firehose access through Dataminr, but has to watch its step</h3>
-
-                                        <p>
-                                            Posted 10 minutes ago by Devin Coldewey, Contributor
-                                        </p>
-
-
-                                        <h4>
-
-
-                                            TechCrunch was told that the service being provided to the FBI is different from that requested by the CIA, which was turned away before. The FBI would receive âa limited version of our breaking news alerting productâ starting December 1, according to a Dataminr statement. (âDataminr is not a product that enables surveillance,â it concluded. Not knowingly, perhaps.)
-
-                                        </h4>
-                                    </div>
-                               
-                             
-                            </div>
-                           
-                        </div>
-                    </div>
-
-                    `;
-
-                }
- var articles = document.getElementById('articles');
- articles.innerHTML = content;
-
+    //request.open('GET', '/get-articles', true);
+    //request.send(null);
+    
+    //
+    
+        request.open('POST', '/get-articles', true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify({count: count}));  
 }
-loadArticles();
+
+
+function loadLoggedInUser (username) {
+    var loginArea = document.getElementById('login_area');
+    loginArea.innerHTML = `
+    
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+									<ul class="nav navbar-nav navbar-right">
+										
+									   
+										<li><a href="/about">About</a>
+										</li>
+										
+										<li><a href="/">Blog</a>
+										</li>
+                                        <li class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown">${username} <i class="fa fa-user-o" aria-hidden="true"><b class="caret"></b></i></a>
+											<ul class="dropdown-menu">
+												<li><a href="/blog">List of Posts</a>
+												</li>
+												<li><a href="/logout">Logout</a>
+												</li>
+											</ul>
+										</li>
+                                            
+                    
+										
+									</ul>
+								</div>
+    
+        
+        
+        
+    `;
+}
+
+function loadLogin () {
+    // Check if the user is already logged in
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                loadLoggedInUser(this.responseText);
+            } else {
+                console.log("Go and login ");
+            }
+        }
+    };
+    
+    request.open('GET', '/check-login', true);
+    request.send(null);
+}
+
+//next button
+
+var nextbutton = document.getElementById('next_btn');
+    nextbutton.onclick = function (){
+        console.log("i am in next btn");
+        console.log(count);
+        count+=3;
+        loadArticles(count);
+        
+        
+    }
+    
+
+//previous button
+    
+    
+var prevbutton = document.getElementById('prev_btn');
+    prevbutton.onclick = function (){
+        console.log("i am in prev btn");
+         console.log(count);
+          count-=3;
+        loadArticles(count);
+       
+        
+    }
+ 
+loadLogin ();   
+
+var article= 1;
+var count = -3;
+ 
+if(article===1){
+    
+   count+=3;
+   loadArticles(count);
+   
+   article++; 
+   //console.log(article);
+}
+
+
+//test();
 
 
 
