@@ -18,7 +18,7 @@ var submit = document.getElementById('login_btn');
                   alert('Something went wrong on the server');
                   submit.value = 'Login';
               }
-             // loadLogin();
+             loadLogin();
           }  
           // Not done yet
         };
@@ -34,6 +34,15 @@ var submit = document.getElementById('login_btn');
         submit.value = 'Logging in...';
         
     };
+
+function loadLoggedInUser (username) {
+    var loginArea = document.getElementById('login_area');
+    loginArea.innerHTML = `
+        <h3> Hi <i>${username}</i></h3>
+        <a href="/logout">Logout</a>
+    `;
+}
+
 
 
 //register start here
