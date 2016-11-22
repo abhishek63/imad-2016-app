@@ -39,7 +39,8 @@
 									<a class="navbar-brand" href="/"><i class="fa fa-rss" aria-hidden="true"></i> Kumargolu63 </a>
 								</div>
 
-								
+								 <div id="login_area">
+								     
 								<div class="collapse navbar-collapse navbar-ex1-collapse">
 									<ul class="nav navbar-nav navbar-right">
 										
@@ -47,22 +48,18 @@
 										<li><a href="/about">About</a>
 										</li>
 										
-										<li><a href="/contact">Contact</a>
+										<li><a href="/">Blog</a>
 										</li>
-
-										<li class="dropdown">
-											<a class="dropdown-toggle" data-toggle="dropdown">Blog <i class="fa fa-user-o" aria-hidden="true"><b class="caret"></b></i></a>
-											<ul class="dropdown-menu">
-												<li><a href="#/blog">List of Posts</a>
-												</li>
-												<li><a href="#/blog/post">View One Post</a>
-												</li>
-											</ul>
-										</li>
-
-										<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i> Login</a></li>
+                                        <li>   <a href="/login"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+                                          
+                                         </li>
+                                            
+                    
+										
 									</ul>
 								</div>
+								
+							</div>
 								
 							</div>
 						</nav>
@@ -70,12 +67,54 @@
 				
 				</div>
 				
+				<div class="container">
+    				<div class="jumbotron">
+                      <h1>Welcome to My Blog!</h1>
+                      <p>This blog is created during the imad courses, which is conducted by NPTEL. In this blog you can create account as well as you can login with their account and also comment any article when you login with own account</p>
+                    </div>
+                    
+				</div>
+				
+				<div class="container">
+				    <div class="row">
 
-				 <hr/>
-                <h3>My Articles</h3>
+                        <div class="col-lg-12">
+                           
+                            <ol class="breadcrumb">
+                                <li><a href="/">Home</a>
+                                </li>
+                                <li class="active">Blog</li>
+                            </ol>
+                            
+                             <h1 class="page-header" style="text-align:center">My Articles
+                                <small></small>
+                            </h1>
+                        </div>
+
+                    </div>
+                    
+				</div>
+			
+
+			
                 <div id="articles">
                     <center>Loading articles...</center>
                 </div>
+           
+                    <div class="container">
+                        
+                        <div class="row">
+    
+                            <ul class="pager">
+                                <li class="previous"><input id="prev_btn" type="button" class="btn btn-primary login-button .navbar-left" value="Prev"/>
+                                </li>
+                                <li class="next"><input id="next_btn" type="button" class="btn btn-primary login-button .navbar-right" value="Next"/>
+                                </li>
+                            </ul>
+    
+                    </div>
+                    </div>
+                
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                 <script src="/ui/main.js"></script>
