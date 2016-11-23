@@ -1,5 +1,3 @@
-//register start here
-
 
 var register = document.getElementById('register_btn');
     register.onclick = function () {
