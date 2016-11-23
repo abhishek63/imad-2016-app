@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var config = {
-    user: 'abhishekrock',
-    database: 'abhishekrock',
+    user: 'abhishek63',
+    database: 'abhishek63',
     host: 'db.imad.hasura-app.io',
     port: '5432',
     password: process.env.DB_PASSWORD
@@ -23,15 +23,47 @@ app.use(session({
 }));
 
 
+function calTimee(time){
+    var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        
+        var string = month[time.getMonth()];
+        
+        console.log(string);
+        string += " "+time.getDate();
+        console.log(string);
+        string += ", "+time.getFullYear();
+        console.log(string);
+        return string;
+    
+}
+
 
 
 //create template
 
 function createTemplate (data) {
     var title = data.title;
-    var date = data.date;
-    var heading = data.heading;
+    //var date = data.date;
+    console.log(title);
+    var time = new Date(data.date);
+    var newtime = calTimee(time);
+     console.log(newtime);
+    //var userid = dataid;
+     //console.log(userid);
     var content = data.content;
+     console.log(content);
     
     var htmlTemplate = `
         
@@ -58,13 +90,34 @@ function createTemplate (data) {
                         font-size: 19px;
                         line-height: 1.6;
                         margin-top: 5px;
-                        margin-bottom: 20px;
+                        margin-bottom: 5px;
                     }
                     
-                    hr{
-                        width:70%;
+                    .main{
+                        margin-top:50px;
                     }
-                    					
+                   	hr{
+                   	
+                   	    width:100% ;
+                   	}
+                   	
+                   	.username{
+                   	    color:#2DACD1;
+                   	    
+                   	}
+                   	
+                   	#submit,textarea{
+                   	    border-radius: 5px;
+                        background: transparent;
+                        border: 2px solid #5fcf80;
+                        color: #5fcf80;
+                        padding: 10px 26px;
+                        font-size: 14px;
+                        display: inline-block;
+                        margin: 0;
+                        font-weight: 700;
+                        text-align: center;
+                   	}
 					
 					</style>
                    
@@ -129,7 +182,8 @@ function createTemplate (data) {
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
 	               		<h1 class="title">${title}</h1>
-	               	        <p>writes on November 10, 2016</p>
+	               	        <p>writes on ${newtime}</p>
+	               	        <p>by Abhishek
 	               	</div>
 	            </div> 
 	           
@@ -144,17 +198,30 @@ function createTemplate (data) {
 				    <div class="col-md-8">
 				
     	               		<p class="title">${content}<p>
-    	            
+    	            <hr/>
 			        </div>
 			
         			<div class="col-md-2">
-        				    </div>
+        		    </div>
 			    </div>
 			
-		</div>
+		   </div>
 				
-			<hr/>
 			
+			
+			
+			<div class="container">
+		
+			<div id="comments1">
+			
+			
+			</div>
+			
+			
+			
+			</div>
+			
+		
 			
 			<div class="container">
 				<div class="row main">
@@ -163,18 +230,17 @@ function createTemplate (data) {
 				    </div>
 				    <div class="col-md-8">
 				
-    	               	<h4>Comments</h4>
+    	               	<h2>Leave a Reply</h2>
                           <div id="comment_form">
+                            <center>Please login to comment </center>
                           </div>
-                          <div id="comments">
-                            <center>Loading comments...</center>
-                          </div>
+                          
                       </div>
-    	            
+        	            <div class="col-md-2">
+            				</div>
 			        </div>
 			
-        			<div class="col-md-2">
-        				    </div>
+        			
 			    </div>
 			    
 			 </div>
@@ -187,17 +253,6 @@ function createTemplate (data) {
     `;
     return htmlTemplate;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -264,7 +319,7 @@ app.post('/login', function (req, res) {
                 // { auth: {userId }}
                 
                 res.send('credentials correct!');
-                
+                //for redirectio
               } else {
                 res.status(403).send('username/password is invalid');
               }
@@ -357,7 +412,10 @@ app.post('/submit-comment/:articleName', function (req, res) {
 
 app.get('/articles/:articleName', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM article WHERE title = $1", [req.params.articleName], function (err, result) {
+  //SELECT * FROM article WHERE title = $1"
+ 
+  
+  pool.query( 'SELECT * FROM article WHERE title = $1' , [req.params.articleName], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
     } else {
