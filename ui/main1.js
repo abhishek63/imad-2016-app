@@ -18,7 +18,7 @@ var submit = document.getElementById('login_btn');
                   alert('Something went wrong on the server');
                   submit.value = 'Login';
               }
-             loadLogin();
+              loadLogin();
           }  
           // Not done yet
         };
@@ -35,10 +35,15 @@ var submit = document.getElementById('login_btn');
         
     };
 
+
+
+
+
 function loadLoggedInUser (username) {
-    var loginArea = document.getElementById('login_area');
+    var loginArea = document.getElementById('login_area1');
+    console.log("loadloggedinuser");
     loginArea.innerHTML = `
-        <h3> Hi <i>${username}</i></h3>
+        <h1> Hi <i>${username}</i></h1>
         <a href="/logout">Logout</a>
     `;
 }
@@ -51,13 +56,14 @@ function loadLogin () {
             if (request.status === 200) {
                 loadLoggedInUser(this.responseText);
             } else {
-                loadLoginForm();
+                //loadLoginForm();
             }
         }
     };
     request.open('GET', '/check-login', true);
     request.send(null);
 }
+
 //register start here
 
 
@@ -91,3 +97,5 @@ var register = document.getElementById('register_btn');
         register.value = 'Registering...';
     
     };
+    
+  //  loadLogin();
