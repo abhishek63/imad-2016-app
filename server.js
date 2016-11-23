@@ -248,6 +248,7 @@ function createTemplate (data) {
              
               
           <script type="text/javascript" src="/ui/article.js"></script>
+          <script type="text/javascript" src="/ui/checklogin.js"></script>
       </body>
     </html>
     `;
