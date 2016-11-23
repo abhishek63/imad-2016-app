@@ -1,8 +1,4 @@
 //register start here
-
-
-
-
 var register = document.getElementById('register_btn');
     register.onclick = function () {
         // Create a request object
@@ -34,3 +30,4 @@ var register = document.getElementById('register_btn');
     
     };
 }
+
