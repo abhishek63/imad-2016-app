@@ -257,6 +257,7 @@ function createTemplate (data) {
 
 
 
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -327,7 +328,6 @@ app.post('/login', function (req, res) {
           }
       }
    });
-   
 });
 
 app.get('/check-login', function (req, res) {
